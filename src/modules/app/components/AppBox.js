@@ -10,14 +10,14 @@ const AppBox = React.createClass({
         this.serverRequest.abort();
     },
 
-    _getQuery(){
+    _onSearchSubmit(event){
+        event.preventDefault();
         this.serverRequest = $.get('http://api.yummly.com/v1/api/recipes',
             {
                 _app_id: "cdbd4c42",
                 _app_key: "786fe91ea92653a0bd25b3dd9639a664",
                 q: this.state.searchValue
             }).done(function (result) {
-                console.log(result);
                 this.setState({
                     searchResults: result.matches
                 });
@@ -43,8 +43,10 @@ const AppBox = React.createClass({
         return (
             <div className="app-container">
                 <div className="search-container">
-                    <input type="text" value={this.state.searchValue} onChange={this._handleSearchChange}/>
-                    <button onClick={this._getQuery}>Search</button>
+                    <form onSubmit={this._onSearchSubmit}>
+                        <input type="text" value={this.state.searchValue} onChange={this._handleSearchChange}/>
+                        <button>Search</button>
+                    </form>
                 </div>
                 <div className="results-container">{searchResults}</div>
             </div>
