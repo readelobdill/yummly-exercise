@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 const SearchResult = React.createClass({
     propTypes: {
@@ -6,9 +7,11 @@ const SearchResult = React.createClass({
     },
 
     render() {
-        console.log(this.props.result);
         return (
-            <div className="search-result"></div>
+            <div className="search-result">
+                <img src={_.get(this.props.result, "imageUrlsBySize.90")}/>
+                <span>{this.props.result.recipeName}</span>
+            </div>
         );
     }
 });
