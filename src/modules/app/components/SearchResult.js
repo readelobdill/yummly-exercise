@@ -1,19 +1,20 @@
 import React from 'react';
 import _ from 'lodash';
+import { Link } from 'react-router'
 
-const SearchResult = React.createClass({
+export default React.createClass({
     propTypes: {
         result: React.PropTypes.object.isRequired
     },
 
     render() {
         return (
-            <div className="search-result">
-                <img src={_.get(this.props.result, "imageUrlsBySize.90")}/>
-                <span>{this.props.result.recipeName}</span>
-            </div>
+            <Link to={`/recipe/${this.props.result.id}`}>
+                <li className="search-result">
+                    <img src={_.get(this.props.result, "imageUrlsBySize.90")}/>
+                    <div>{this.props.result.recipeName}</div>
+                </li>
+            </Link>
         );
     }
 });
-
-export default SearchResult
