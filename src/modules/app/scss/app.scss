@@ -1,9 +1,10 @@
 $fa-font-path:"../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome";
 #app-box{
-    max-width: 800px;
     font-family: 'Press Start 2P', cursive;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 50px 0px;
 
     form.search-form{
         width: 400px;
@@ -17,12 +18,19 @@ $fa-font-path:"../node_modules/font-awesome/fonts";
             border-radius: 10px;
             height: 50px;
             text-align: center;
+            font-size: 30px;
+            outline: none;
         }
 
         button{
             height: 50px;
+            width: 50px;
             position: absolute;
             right: 0;
+            cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
         }
     }
 
@@ -30,22 +38,35 @@ $fa-font-path:"../node_modules/font-awesome/fonts";
         width: 100%;
 
         li{
-            width: 33%;
+            width: 33.33%;
             display: inline-block;
-            padding: 25px 0px;
             background: #383838;
+            position: relative;
+
+            &:hover{
+                img{
+                    opacity: 0.5;
+                }
+                div{
+                    display: inline;
+                }
+            }
 
             img{
                 display: block;
-                margin: 0 auto 20px auto;
-
-                -webkit-box-shadow: 0px 0px 15px 4px rgba(0,0,0,0.47);
-                -moz-box-shadow: 0px 0px 15px 4px rgba(0,0,0,0.47);
-                box-shadow: 0px 0px 15px 4px rgba(0,0,0,0.47);
+                margin: 0 auto;
+                width: 100%;
             }
 
             div{
+                display: none;
+
+                width: 100%;
                 text-align: center;
+                color: white;
+                position: absolute;
+                top: 50%;
+                line-height: 20px;
             }
         }
     }
