@@ -42,7 +42,7 @@ export default React.createClass({
             <div className="search-container">
                 <form className="search-form" onSubmit={this._onSearchSubmit}>
                     <input type="text" value={this.state.searchValue} onChange={this._handleSearchChange}/>
-                    <button></button>
+                    <button className="fa fa-search fa-lg"></button>
                 </form>
                 <ul className="results-container">{searchResults}</ul>
             </div>
