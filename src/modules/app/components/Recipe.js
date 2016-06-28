@@ -9,7 +9,6 @@ export default React.createClass({
                 _app_id: "cdbd4c42",
                 _app_key: "786fe91ea92653a0bd25b3dd9639a664"
             }).done(function (result) {
-                console.log(result);
                 this.setState({recipe: result});
         }.bind(this));
     },
