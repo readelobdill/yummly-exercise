@@ -16,6 +16,7 @@ export default React.createClass({
                 q: this.state.searchValue
             }).done(function (result) {
                 console.log(result)
+                window.searchResults = result.matches;
                 this.setState({
                     searchResults: result.matches
                 });
@@ -24,12 +25,16 @@ export default React.createClass({
 
     _handleSearchChange(event) {
         this.setState({searchValue: event.target.value});
+        window.searchValue = event.target.value;
     },
 
     getInitialState(){
+        // Although not ideal, am setting results on window to remember state
+        // if given more time/inspiration this would be an opportunity to set up a flux store in
+        // order to remember state.
         return {
-            searchResults: [],
-            searchValue: 'rice'
+            searchResults: window.searchResults || [],
+            searchValue: window.searchValue || 'guac'
         };
     },
 
