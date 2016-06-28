@@ -15,7 +15,6 @@ export default React.createClass({
                 _app_key: "786fe91ea92653a0bd25b3dd9639a664",
                 q: this.state.searchValue
             }).done(function (result) {
-                console.log(result)
                 window.searchResults = result.matches;
                 this.setState({
                     searchResults: result.matches

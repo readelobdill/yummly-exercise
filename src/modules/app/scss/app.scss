@@ -38,10 +38,18 @@ $fa-font-path:"../node_modules/font-awesome/fonts";
         width: 100%;
 
         li{
-            width: 33.33%;
+            width: calc(100%/3);
             display: inline-block;
             background: #383838;
             position: relative;
+
+            @media (max-width: 600px) {
+                width: 50%;
+            }
+
+            @media (max-width: 400px) {
+                width: 100%;
+            }
 
             &:hover{
                 img{
@@ -67,6 +75,39 @@ $fa-font-path:"../node_modules/font-awesome/fonts";
                 position: absolute;
                 top: 50%;
                 line-height: 20px;
+            }
+        }
+    }
+
+    div.recipe-container{
+        max-width: 600px;
+        margin: 0 auto;
+
+        h2{
+            font-size: 30px;
+            text-align: center;
+        }
+
+        img{
+            width: 100%;
+            max-width: 400px;
+            min-height: 250px;
+            margin: 25px auto;
+            display: block;
+        }
+
+        li{
+            position: relative;
+            font-size: 20px;
+            line-height: 40px;
+            vertical-align: middle;
+            padding-left: 30px;
+
+            span{
+                font-size: 30px;
+                position: absolute;
+                left: 0;
+                top: 5px;
             }
         }
     }

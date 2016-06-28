@@ -29,7 +29,10 @@ export default React.createClass({
     render() {
 
         const ingredientLines = this.state.recipe.ingredientLines.map(function(ingredientLine, i) {
-            return (<li key={i}>{ingredientLine}</li>);
+            return (<li key={i}>
+                        <span className="fa fa-spoon"></span>
+                        {ingredientLine}
+                    </li>);
         });
 
         return (
