@@ -1,51 +1,32 @@
-import $ from 'jquery';
 import React from 'react';
+import Reflux from 'reflux';
 import SearchResult from './SearchResult';
+import SearchStore from '../stores/search-store';
+import SearchActions from '../actions/search-actions';
 
 export default React.createClass({
-    componentWillUnmount() {
-       if(this.serverRequest) this.serverRequest.abort();
+    mixins: [ Reflux.connect(SearchStore, "search") ],
+    componentWillMount(){
+        SearchActions.getSearchResults();
     },
-
     _onSearchSubmit(event){
         event.preventDefault();
-        this.serverRequest = $.get('http://api.yummly.com/v1/api/recipes',
-            {
-                _app_id: "cdbd4c42",
-                _app_key: "786fe91ea92653a0bd25b3dd9639a664",
-                q: this.state.searchValue
-            }).done(function (result) {
-                window.searchResults = result.matches;
-                this.setState({
-                    searchResults: result.matches
-                });
-        }.bind(this));
+        SearchActions.getSearchResults();
     },
 
     _handleSearchChange(event) {
-        this.setState({searchValue: event.target.value});
-        window.searchValue = event.target.value;
-    },
-
-    getInitialState(){
-        // Although not ideal, am setting results on window to remember state
-        // if given more time/inspiration this would be an opportunity to set up a flux store in
-        // order to remember state.
-        return {
-            searchResults: window.searchResults || [],
-            searchValue: window.searchValue || 'guac'
-        };
+        SearchActions.updateSearchQuery(event.target.value);
     },
 
     render() {
-        const searchResults = this.state.searchResults.map(function(result) {
+        const searchResults = this.state.search.searchResults.map(function(result) {
             return (<SearchResult result={result} key={result.id}/>);
         });
 
         return (
             <div className="search-container">
                 <form className="search-form" onSubmit={this._onSearchSubmit}>
-                    <input type="text" value={this.state.searchValue} onChange={this._handleSearchChange}/>
+                    <input type="text" value={this.state.search.searchQuery} onChange={this._handleSearchChange}/>
                     <button className="fa fa-search fa-lg"></button>
                 </form>
                 <ul className="results-container">{searchResults}</ul>

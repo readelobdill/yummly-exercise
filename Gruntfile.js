@@ -15,7 +15,12 @@ module.exports = function(grunt) {
                     ]
                 },
                 files: {
-                    'build/scripts.js': ['src/modules/**/*.js', 'src/modules/**/components/*.js']
+                    'build/scripts.js': [
+                        'src/modules/**/*.js',
+                        'src/modules/**/actions/*.js',
+                        'src/modules/**/components/*.js',
+                        'src/modules/**/stores/*.js'
+                    ]
                 }
             }
         },
@@ -34,7 +39,9 @@ module.exports = function(grunt) {
             jsx: {
                 files: [
                     'src/modules/**/*.js',
-                    'src/modules/**/components/*.js'
+                    'src/modules/**/actions/*.js',
+                    'src/modules/**/components/*.js',
+                    'src/modules/**/stores/*.js'
                 ],
                 tasks: ['browserify:jsx']
             },
