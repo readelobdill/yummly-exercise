@@ -6,9 +6,11 @@ import SearchActions from '../actions/search-actions';
 
 export default React.createClass({
     mixins: [ Reflux.connect(SearchStore, "search") ],
+
     componentWillMount(){
         SearchActions.getSearchResults();
     },
+
     _onSearchSubmit(event){
         event.preventDefault();
         SearchActions.getSearchResults();

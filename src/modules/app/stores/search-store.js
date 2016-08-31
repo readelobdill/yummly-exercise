@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Reflux from 'reflux';
 import SearchActions from '../actions/search-actions';
 
-var SearchStore = Reflux.createStore({
+const SearchStore = Reflux.createStore({
 
     listenables: SearchActions,
 
@@ -11,7 +11,7 @@ var SearchStore = Reflux.createStore({
         searchQuery: 'guac'
     },
 
-    getInitialState: function() {
+    getInitialState() {
       return this.data;
     },
 

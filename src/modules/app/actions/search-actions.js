@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 
-var SearchActions = Reflux.createActions([
+const SearchActions = Reflux.createActions([
     "getSearchResults",
     "updateSearchQuery"
 ]);
