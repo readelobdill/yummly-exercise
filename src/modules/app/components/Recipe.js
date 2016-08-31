@@ -1,20 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
-import $ from 'jquery';
 
 export default React.createClass({
     componentDidMount() {
-        this.serverRequest = $.get('http://api.yummly.com/v1/api/recipe/' + this.props.params.recipeId,
-            {
-                _app_id: "cdbd4c42",
-                _app_key: "786fe91ea92653a0bd25b3dd9639a664"
-            }).done(function (result) {
-                this.setState({recipe: result});
-        }.bind(this));
-    },
-
-    componentWillUnmount() {
-        this.serverRequest.abort();
+        let url = `http://api.yummly.com/v1/api/recipe/${this.props.params.recipeId}?_app_id=cdbd4c42&_app_key=786fe91ea92653a0bd25b3dd9639a664`
+        fetch(url).then((response) => response.json())
+          .then(result => this.setState({recipe: result}));
     },
 
     getInitialState(){
